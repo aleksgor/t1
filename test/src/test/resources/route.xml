@@ -1,0 +1,8 @@
+<route>
+	<model name="Test">
+		<relation name="testChild" mapped-by="Child" table="child" model="Child">
+			<column name="childId" target="id" />
+		</relation>
+	</model>
+	<model name="Child" />
+</route>

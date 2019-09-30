@@ -1,0 +1,35 @@
+<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.ag.cache.controller.serverlist.HostViewModel')">
+  <grid id="serverGrid" height="400px" model="@load(vm.foodModel)">
+    <columns menupopup="auto">
+      <column sort="auto(Name)" label="Name" width="150px" />
+      <column sort="auto(TopNutrients)" label="Top Nutrients" hflex="1" />
+      <column sort="auto(DailyPercent)" label="% of Daily" hflex="1" align="center" />
+      <column sort="auto(Calories)" label="Calories" hflex="1" align="center" />
+      <column sort="auto(Quantity)" label="Quantity" />
+    </columns>
+    <!-- template for group -->
+    <template name="model:group">
+      <group label="@load(each)" />
+    </template>
+
+    <!-- template for each element in model -->
+    <template name="model">
+      <row>
+        <label value="@load(each.name)" />
+        <label value="@load(each.topNutrients)" />
+        <label value="@load(each.dailyPercent)" />
+        <label value="@load(each.calories)" />
+        <label value="@load(each.quantity)" />
+      </row>
+    </template>
+
+    <!-- template for footer -->
+    <template name="model:groupfoot">
+      <groupfoot>
+        <cell colspan="5" style="text-align: right; padding-right: 15px">
+          <label value="@load(each)" style="font-weight:bold;" />
+        </cell>
+      </groupfoot>
+    </template>
+  </grid>
+</div>

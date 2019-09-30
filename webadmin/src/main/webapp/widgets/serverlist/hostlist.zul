@@ -1,0 +1,20 @@
+<div id="sl" apply="com.ag.cache.controller.serverlist.ServerListController" height="100%">
+        <tree id="serverTree" model="${sl$composer.hostList}" width="100%" vflex="1" height="100%">
+            <treecols>
+                <treecol label="host" />
+                <treecol label="port" align="center" />
+                <treecol label="type" align="center" width="55px" />
+                <treecol label="active" align="center" width="55px" />
+            </treecols>
+            <template name="model">
+                <treeitem>
+                    <treerow>
+                        <treecell label="${each.host}" />
+                        <treecell label="${each.port}" />
+                        <treecell label="${each.type}" />
+                        <treecell label="yes" />
+                    </treerow>
+                </treeitem>
+            </template>
+        </tree>
+</div>

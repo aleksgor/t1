@@ -1,0 +1,60 @@
+<server>
+	<commandPort>2221</commandPort>
+	<port>2222</port>
+	<managementPort>2225</managementPort>
+
+	<threads>50</threads>
+	<tcpTimeOut>20</tcpTimeOut>
+
+	<sessionTimeout>30</sessionTimeout>
+	<cleanerTimer>1</cleanerTimer>
+	<managerServer>
+		<port>2224</port>
+		<host>localhost</host>
+	</managerServer>
+
+	<models>
+		<model>
+			<package>com.ag.cache.test.model</package>
+			<model>Test</model>
+			<identifier>TestId</identifier>
+			<readThrough>true</readThrough>
+			<writeThrough>true</writeThrough>
+			<dataSource>a</dataSource>
+		</model>
+		<model>
+			<package>com.ag.cache.test.model</package>
+			<model>Child</model>
+			<identifier>ChildId</identifier>
+			<readThrough>true</readThrough>
+			<writeThrough>true</writeThrough>
+			<dataSource>a</dataSource>
+		</model>
+	</models>
+	<dataSources>
+		<dataSource>
+			<name>a</name>
+			<class>com.ag.cache.test.userdataaccess.BaseDataInvoker</class>
+			<threads>10</threads>
+			<properties>
+				<property>
+					<name>driver</name>
+					<value>org.postgresql.Driver</value>
+				</property>
+				<property>
+					<name>url</name>
+					<value>jdbc:postgresql://localhost:5432/test</value>
+				</property>
+				<property>
+					<name>user</name>
+					<value>test</value>
+				</property>
+				<property>
+					<name>password</name>
+					<value>test</value>
+				</property>
+			</properties>
+		</dataSource>
+	</dataSources>
+
+</server>

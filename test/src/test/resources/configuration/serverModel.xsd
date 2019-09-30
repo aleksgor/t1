@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="serverModel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="storeModels" minOccurs="0" maxOccurs="1" type="storeModels" />
+                <xs:element name="listeners" type="listeners" />
+                <xs:element name="commandPlugins" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="commandPlugin" type="commandPlugin" minOccurs="1" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="servers" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="connect" minOccurs="0" maxOccurs="unbounded" type="serverConnect" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="clients" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="connect" minOccurs="0" maxOccurs="unbounded" type="clientConnect" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dataSources" minOccurs="0" maxOccurs="1" type="dataSources" />
+                <xs:element name="sessionClients" minOccurs="0" maxOccurs="1" type="sessionClients" />
+
+                <xs:element type="xs:boolean" name="calculateStatistic" minOccurs="0" maxOccurs="1" />
+                <xs:element type="xs:string" name="pluginPath" minOccurs="0" maxOccurs="1" />
+                <xs:element name="saveClients" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="saveClient" minOccurs="0" maxOccurs="unbounded" type="saveClient" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="saveServers" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="saveServer" minOccurs="0" maxOccurs="unbounded" type="saveServer" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element type="xs:string" name="serverName" />
+                <xs:element name="sessionServer" minOccurs="0" maxOccurs="1" type="sessionServer" />
+                <xs:element name="properties" maxOccurs="1" minOccurs="0" type="properties" />
+                <xs:element name="sessionCallBackServer" minOccurs="0" maxOccurs="1" type="sessionCallBackServer" />
+                <xs:element name="serializer" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="class" minOccurs="1" maxOccurs="1" />
+                            <xs:element type="xs:string" name="serializerClass" minOccurs="1" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="commandServer" minOccurs="0" maxOccurs="1" type="commandServer" />
+                <xs:element name="managementServer" minOccurs="0" maxOccurs="1" type="managementServer" />
+                <xs:element name="trustSessions" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true" />
+                <xs:element name="maxExecThreads" minOccurs="0" maxOccurs="1" type="xs:int" default="50" />
+                <xs:element name="idGeneratorServer" minOccurs="0" maxOccurs="1" type="idGeneratorServer" />
+
+                <xs:element name="idGeneratorClients" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="idGeneratorClient" minOccurs="0" maxOccurs="unbounded" type="idGeneratorClient" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="idGeneratorClient">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonClient">
+                <xs:sequence>
+                    <xs:element name="modelNames" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="modelName" minOccurs="0" maxOccurs="unbounded" type="xs:string" />
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="idGeneratorServer">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonServer">
+                <xs:sequence>
+                    <xs:element name="increment" type="xs:int" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="timeOut" type="xs:int" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="modelSource" type="modelSource" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="invokerClass" type="xs:string" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="modelSource">
+        <xs:sequence>
+            <xs:element type="entry" name="entry" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="entry">
+        <xs:sequence>
+            <xs:element type="xs:string" name="key" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:string" name="value" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="commandPlugin">
+        <xs:sequence>
+            <xs:element type="xs:int" name="checkDelay" />
+            <xs:element type="xs:string" name="class" />
+            <xs:element type="xs:int" name="poolSize" />
+            <xs:element type="xs:int" name="timeout" />
+            <xs:element name="properties" maxOccurs="1" minOccurs="0" type="properties" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="storeModels">
+        <xs:sequence>
+            <xs:element name="storeModel" minOccurs="0" maxOccurs="unbounded" type="storeModel" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="sessionClients">
+        <xs:sequence>
+            <xs:element name="sessionClient" minOccurs="0" maxOccurs="unbounded" type="sessionClient" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="storeModel">
+        <xs:sequence>
+            <xs:element type="xs:string" name="dataSource" />
+            <xs:element type="xs:string" name="model" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:string" name="class" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:boolean" name="readThrough" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:boolean" name="writeThrough" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="copyCount" minOccurs="1" maxOccurs="1" />
+            <xs:element name="serverType" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="CACHE" />
+                        <xs:enumeration value="CACHE_MANAGER" />
+                        <xs:enumeration value="CACHE_CACHE_MANAGER" />
+                        <xs:enumeration value="TRANSLATOR" />
+                        <xs:enumeration value="ALL" />
+                    </xs:restriction>
+                </xs:simpleType>
+
+            </xs:element>
+            <xs:element name="storeType" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="OBJECT" />
+                        <xs:enumeration value="BYTES" />
+                        <xs:enumeration value="ZIPPED_BYTES" />
+                    </xs:restriction>
+                </xs:simpleType>
+
+            </xs:element>
+            <xs:element name="cacheMatcher" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="class" minOccurs="1" maxOccurs="1" />
+                        <xs:element name="properties" minOccurs="0" maxOccurs="1" type="properties" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="listeners">
+        <xs:sequence>
+            <xs:element name="listener" minOccurs="0" maxOccurs="unbounded" type="listener" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="listener">
+        <xs:sequence>
+            <xs:element type="xs:string" name="host" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:int" name="port" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="backlog" minOccurs="0" maxOccurs="1" default="1000" />
+            <xs:element type="xs:int" name="minThreads" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="maxThreads" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="status" maxOccurs="1" minOccurs="0" default="0" />
+            <xs:element type="xs:string" name="protocolType" maxOccurs="1" minOccurs="0" default="TCP" />
+            <xs:element name="properties" minOccurs="0" maxOccurs="1" type="properties" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="dataSources">
+        <xs:sequence>
+            <xs:element name="dataSource" minOccurs="0" maxOccurs="unbounded" type="dataSource" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="dataSource">
+        <xs:sequence>
+            <xs:element type="xs:string" name="name" />
+            <xs:element type="xs:string" name="class" />
+            <xs:element type="xs:int" name="threads" />
+            <xs:element type="xs:int" name="timeout" minOccurs="1" maxOccurs="1" />
+            <xs:element name="properties" minOccurs="0" maxOccurs="1" type="properties" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="clientConnect">
+        <xs:sequence>
+            <xs:element name="status" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Unknown" />
+                        <xs:enumeration value="OK" />
+                        <xs:enumeration value="Inaccessible" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="threads" minOccurs="1" maxOccurs="1" />
+
+            <xs:element type="commonClient" name="managementClient" minOccurs="1" maxOccurs="1" />
+            <xs:element type="listener" name="listener" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="serverConnect">
+        <xs:sequence>
+            <xs:element name="status" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Unknown" />
+                        <xs:enumeration value="OK" />
+                        <xs:enumeration value="Inaccessible" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="threads" minOccurs="1" maxOccurs="1" />
+
+            <xs:element type="commonClient" name="managementServer" minOccurs="1" maxOccurs="1" />
+            <xs:element type="listener" name="listener" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="properties">
+        <xs:sequence>
+            <xs:element name="entry" minOccurs="0" maxOccurs="unbounded" type="property" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="property">
+        <xs:sequence>
+            <xs:element type="xs:string" name="key" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:string" name="value" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="commonServer">
+        <xs:sequence>
+            <xs:element type="xs:string" name="host" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:int" name="port" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="minThreads" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="maxThreads" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:long" name="keepAliveTime" minOccurs="1" maxOccurs="1" />
+            <xs:element type="protocolType" name="protocolType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="properties" minOccurs="0" maxOccurs="1" type="properties" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="commonClient">
+        <xs:sequence>
+            <xs:element type="xs:string" name="host" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="port" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="threads" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:int" name="timeout" minOccurs="1" maxOccurs="1" />
+            <xs:element type="protocolType" name="protocolType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="properties" minOccurs="0" maxOccurs="1" type="properties" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="protocolType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TCP" />
+            <xs:enumeration value="UDP" />
+            <xs:enumeration value="SSL" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="saveClient">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonClient" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="saveServer">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonServer">
+                <xs:sequence>
+                    <xs:element type="xs:long" name="sessionTimeout" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="sessionServer">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonServer">
+                <xs:sequence>
+                    <xs:element name="sessionTimeLive" type="xs:long" />
+                    <xs:element name="authorizationService" type="authorizationService" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="authorizationService">
+        <xs:sequence>
+            <xs:element name="clazz" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="properties" minOccurs="0" maxOccurs="1" type="properties" />
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="sessionClient">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonClient" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="sessionCallBackServer">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonServer" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="commandServer">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonServer" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="managementServer">
+        <xs:complexContent mixed="false">
+            <xs:extension base="commonServer" />
+        </xs:complexContent>
+    </xs:complexType>
+
+
+
+</xs:schema>

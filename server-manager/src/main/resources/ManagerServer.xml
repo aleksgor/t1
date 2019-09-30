@@ -1,0 +1,7 @@
+<server>
+	<port>2224</port>
+	<threads>10</threads>
+	<proxyServerPort>2220</proxyServerPort>
+	<proxyServerThreads>200</proxyServerThreads>
+	<sessionTimeOut>60</sessionTimeOut>
+</server>

@@ -1,0 +1,18 @@
+<server>
+	<managerPort>2221</managerPort>
+	<port>2222</port>
+	<threads>50</threads>
+	<model>
+		<package>com.ag.cache.test.model</package>
+		<name>Test</name>
+		<readThrough>true</readThrough>
+		<writeThrough>true</writeThrough>
+		<loader>com.ag.cache.test.userdataaccess.TestDataAccess</loader>
+	</model>
+	<connection>
+		<driver>org.postgresql.Driver</driver>
+		<url>jdbc:postgresql://localhost:5432/test</url>
+		<user>test</user>
+		<password>test</password>
+	</connection>
+</server>

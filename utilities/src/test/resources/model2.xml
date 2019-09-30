@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<models xmlns="http://www.ag.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ag.com pm.xsd">
+	<model name="MasterModel" class="com.ag.io.model.MasterModel" table="test" identifier="com.ag.io.model.MasterModelId">
+		<field name="id" primary-key="true" type="long">
+			<column name="id" sql-type="LONG" />
+		</field>
+		<field name="name2" primary-key="false" type="string">
+			<column name="name" sql-type="STRING" />
+		</field>
+		<field name="date" primary-key="false" type="date">
+			<column name="data" sql-type="DATE" />
+		</field>
+		<field name="childId" primary-key="false" type="long">
+			<column name="childId" sql-type="LONG" />
+		</field>
+		<field name="secondChildId" primary-key="false" type="long">
+			<column name="secondChildId" sql-type="LONG" />
+		</field>
+		<field name="blob" primary-key="false" type="binary">
+			<column name="blob" sql-type="BLOB" />
+		</field>
+		<relation name="rChild" relationTo="Child">
+			<column name="childId" relationTo="id" />
+		</relation>
+		<relation name="sChild" relationTo="Child" field="secondChild">
+			<column name="secondChildId" relationTo="id" />
+		</relation>
+
+	</model>
+
+	<model name="ChildModel" class="com.ag.io.model.ChildModel" table="child" identifier="com.ag.io.model.ChildModelId">
+		<field name="id" primary-key="true" type="long">
+			<column name="id" sql-type="LONG" />
+		</field>
+		<field name="name" primary-key="false" type="string">
+			<column name="name" sql-type="CHAR" />
+		</field>
+	</model>
+</models>

@@ -1,0 +1,33 @@
+<jdo>
+	<package name="com.ag.test.models">
+		<class name="Test" table="test" objectid-class="TestId">
+			<field name="id" primary-key="true">
+				<column name="id" sql-type="LONG" />
+			</field>
+			<field name="name" primary-key="false">
+				<column name="name" sql-type="CHAR" />
+			</field>
+			<field name="date" primary-key="false">
+				<column name="data" sql-type="DATE" />
+			</field>
+			<field name="childId" primary-key="false">
+				<column name="childId" sql-type="LONG" />
+			</field>
+
+			<relation name="testChild" mapped-by="Child" table="child" model="Child">
+				<column name="childId" target="id" />
+			</relation>
+
+		</class>
+		<class name="Child" table="child" objectid-class="ChildId">
+			<field name="id" primary-key="true">
+				<column name="id" sql-type="LONG" />
+			</field>
+			<field name="name" primary-key="false">
+				<column name="name" sql-type="CHAR" />
+			</field>
+			<!-- <relation name="" mapped-by="" table="" model=""/> -->
+
+		</class>
+	</package>
+</jdo>

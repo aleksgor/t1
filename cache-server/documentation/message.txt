@@ -1,0 +1,3 @@
+Message = header+
+
+header=(byte)version + (String)modelName + (String) command + (String)SessionId + (String)mainSession + (Collection<String>)sessions + (String) userName + (String) password

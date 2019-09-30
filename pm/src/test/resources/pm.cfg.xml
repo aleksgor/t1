@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- xsi:schemaLocation="http://www.ag.com serverModel.xsd" -->
+<models xmlns="http://www.ag.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ag.com pm.xsd">
+	<model name="Test" class="com.ag.pm.test.models.MainClass" table="test" identifier="com.ag.pm.test.models.TestId">
+		<field name="mainId" primary-key="true">
+			<column name="id" sql-type="LONG" />
+		</field>
+		<field name="mainName" primary-key="false">
+			<column name="name" sql-type="STRING" />
+		</field>
+		<field name="mainDate" primary-key="false">
+			<column name="data" sql-type="DATE" />
+		</field>
+		<field name="childId" primary-key="false">
+			<column name="childId" sql-type="LONG" />
+		</field>
+		<field name="secondChildId" primary-key="false">
+			<column name="secondChildId" sql-type="LONG" />
+		</field>
+		<field name="blob" primary-key="false">
+			<column name="blobField" sql-type="BLOB" />
+		</field>
+
+		<relation name="rChild" relationTo="Child">
+			<column name="childId" relationTo="id" />
+		</relation>
+		<relation name="sChild" relationTo="Child" field="secondChild">
+			<column name="secondChildId" relationTo="id" />
+		</relation>
+		<relation name="oChild" relationTo="Child" field="thirdChild" join="LEFT_OUTER">
+			<column name="mainId" relationTo="id" />
+		</relation>
+
+	</model>
+	<model name="Child" class="com.ag.pm.test.models.Child" table="child" identifier="com.ag.pm.test.models.ChildId">
+		<field name="id" primary-key="true">
+			<column name="id" sql-type="LONG" />
+		</field>
+		<field name="name" primary-key="false">
+			<column name="name" sql-type="CHAR" />
+		</field>
+	</model>
+</models>

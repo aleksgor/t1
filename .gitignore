@@ -1,0 +1,11 @@
+/**/src.iml
+/**/.settings
+/**/.classpath
+/**/.project
+/**/build
+/**/target
+/**/bin
+/**/.DS_Store
+test/trash
+zkmanager
+out

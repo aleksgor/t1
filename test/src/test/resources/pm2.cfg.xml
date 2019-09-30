@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!-- xsi:schemaLocation="http://www.ag.com serverModel.xsd" -->
+<models xmlns="http://www.ag.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ag.com pm.xsd">
+    <model name="MainTestModel" class="com.ag.cache.test.model.MainTestModel" table="db2test" identifier="com.ag.cache.test.model.MainTestModelId">
+        <field name="id" primary-key="true">
+            <column name="id" sql-type="LONG" />
+        </field>
+        <field name="name" primary-key="false">
+            <column name="name" sql-type="STRING" />
+        </field>
+        <field name="date" primary-key="false">
+            <column name="data" sql-type="DATE" />
+        </field>
+        <field name="childId" primary-key="false">
+            <column name="childId" sql-type="LONG" />
+        </field>
+        <field name="secondChildId" primary-key="false">
+            <column name="secondChildId" sql-type="LONG" />
+        </field>
+        <field name="thirdChildId" primary-key="false">
+            <column name="thirdChildId" sql-type="LONG" />
+        </field>
+        <field name="blob" primary-key="false">
+            <column name="blobField" sql-type="BLOB" />
+        </field>
+        <field name="money" primary-key="false">
+            <column name="money" sql-type="DOUBLE" />
+        </field>
+
+        <relation name="rChild" relationTo="Child" field="child" join="LEFT_OUTER">
+            <column name="childId" relationTo="id" />
+        </relation>
+        <relation name="sChild" relationTo="Child" field="secondChild" join="LEFT_OUTER">
+            <column name="secondChildId" relationTo="id" />
+        </relation>
+        <relation name="oChild" relationTo="Child" field="thirdChild" join="LEFT_OUTER">
+            <column name="id" relationTo="id" />
+        </relation>
+        <relation name="priceRelation" relationTo="Price" field="prices" join="COLLECTION">
+            <column name="id" relationTo="mainId" />
+        </relation>
+    </model>
+
+    <model name="NoIdTestModel" class="com.ag.cache.test.model.NoIdTestModel" table="db2test" identifier="com.ag.cache.test.model.NoIdTestModelId">
+        <field name="id" primary-key="true">
+            <column name="id" sql-type="LONG" />
+        </field>
+        <field name="name" primary-key="false">
+            <column name="name" sql-type="STRING" />
+        </field>
+        <field name="date" primary-key="false">
+            <column name="data" sql-type="DATE" />
+        </field>
+        <field name="childId" primary-key="false">
+            <column name="childId" sql-type="LONG" />
+        </field>
+        <field name="secondChildId" primary-key="false">
+            <column name="secondChildId" sql-type="LONG" />
+        </field>
+        <field name="thirdChildId" primary-key="false">
+            <column name="thirdChildId" sql-type="LONG" />
+        </field>
+        <field name="money" primary-key="false">
+            <column name="money" sql-type="DOUBLE" />
+        </field>
+
+        <field name="blob" primary-key="false">
+            <column name="blobField" sql-type="BLOB" />
+        </field>
+
+        <relation name="rChild" relationTo="Child">
+            <column name="childId" relationTo="id" />
+        </relation>
+        <relation name="sChild" relationTo="Child" field="secondChild">
+            <column name="secondChildId" relationTo="id" />
+        </relation>
+        <relation name="oChild" relationTo="Child" field="thirdChild" join="LEFT_OUTER">
+            <column name="id" relationTo="id" />
+        </relation>
+
+    </model>
+    <model name="Child" class="com.ag.cache.test.model.Child" table="db2child" identifier="com.ag.cache.test.model.ChildId">
+        <field name="id" primary-key="true">
+            <column name="id" sql-type="LONG" />
+        </field>
+        <field name="name" primary-key="false">
+            <column name="name" sql-type="CHAR" />
+        </field>
+    </model>
+
+
+    <model name="Price" class="com.ag.cache.test.model.Price" table="price" identifier="com.ag.cache.test.model.PriceId">
+        <field name="id" primary-key="true">
+            <column name="id" sql-type="LONG" />
+        </field>
+        <field name="mainId" primary-key="false">
+            <column name="mainId" sql-type="LONG" />
+        </field>
+        <field name="name" primary-key="false">
+            <column name="name" sql-type="STRING" />
+        </field>
+        <field name="startDate" primary-key="false">
+            <column name="startDate" sql-type="DATE" />
+        </field>
+        <field name="endDate" primary-key="false">
+            <column name="endDate" sql-type="DATE" />
+        </field>
+        <field name="money" primary-key="false">
+            <column name="money" sql-type="DOUBLE" />
+        </field>
+
+        <field name="valuta" primary-key="false">
+            <column name="valuta" sql-type="STRING" />
+        </field>
+
+    </model>
+</models>

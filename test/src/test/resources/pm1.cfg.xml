@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- xsi:schemaLocation="http://www.ag.com serverModel.xsd" -->
+<models xmlns="http://www.ag.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ag.com pm.xsd">
+	<model name="Test" class="com.ag.cache.test.model.Test" table="test" identifier="com.ag.cache.test.model.TestId">
+		<field name="id" primary-key="true">
+			<column name="id" sql-type="LONG" />
+		</field>
+		<field name="name" primary-key="false">
+			<column name="name" sql-type="STRING" />
+		</field>
+		<field name="date" primary-key="false">
+			<column name="data" sql-type="DATE" />
+		</field>
+		<field name="childId" primary-key="false">
+			<column name="childId" sql-type="LONG" />
+		</field>
+		<relation name="rChild" relationTo="Child">
+			<column name="childId" relationTo="id" />
+		</relation>
+		<field name="money" primary-key="false">
+			<column name="money" sql-type="DOUBLE" />
+		</field>
+		
+	</model>
+
+	<model name="Child" class="com.ag.cache.test.model.Child" table="child" identifier="com.ag.cache.test.model.ChildId">
+		<field name="id" primary-key="true">
+			<column name="id" sql-type="LONG" />
+		</field>
+		<field name="name" primary-key="false">
+			<column name="name" sql-type="STRING" />
+		</field>
+	</model>
+</models>

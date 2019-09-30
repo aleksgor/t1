@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<serverModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="serverModel.xsd">
+    <storeModels />
+    <listeners>
+        <listener>
+            <host>localhost</host>
+            <port>2022</port>
+            <backlog>10000</backlog>
+            <minThreads>7</minThreads>
+            <maxThreads>7</maxThreads>
+            <status>1</status>
+            <properties />
+        </listener>
+        <listener>
+            <host>localhost</host>
+            <port>2032</port>
+            <backlog>10000</backlog>
+            <minThreads>7</minThreads>
+            <maxThreads>7</maxThreads>
+            <status>1</status>
+            <properties />
+        </listener>
+    </listeners>
+    <commandPlugins>
+        <commandPlugin>
+            <checkDelay>3000</checkDelay>
+            <class>com.ag.plugin.IdGenerator</class>
+            <poolSize>10</poolSize>
+            <timeout>10000</timeout>
+        </commandPlugin>
+    </commandPlugins>
+    <servers />
+    <clients />
+    <dataSources />
+    <sessionClients />
+    <calculateStatistic>true</calculateStatistic>
+    <serverName>cacheTranslator</serverName>
+    <managementServer>
+        <host>localhost</host>
+        <port>2042</port>
+        <minThreads>10</minThreads>
+        <maxThreads>20</maxThreads>
+        <keepAliveTime>1000</keepAliveTime>
+    </managementServer>
+    <trustSessions>true</trustSessions>
+</serverModel>

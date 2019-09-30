@@ -1,0 +1,43 @@
+<zk>
+	<style src="/widgets/getting_started/layout/style.css" />
+	<borderlayout id="mainForm" vflex="min" apply="com.ag.cache.controller.MainController">
+	
+	 <custom-attributes composerName="mf"/> 
+		<north sclass="header" height="50px">
+			<div id="toolbar" height="20px" width="100%">
+				<label sclass="name-text" value="Host:" />
+				<textbox id="host" width="150px" value="localhost" />
+				<label sclass="name-text" value="Port:" />
+				<intbox id="port" width="100px" value="9245" />
+				<button id="connect" label="Connect" />
+			</div>
+		</north>
+		<west title="By Type" collapsible="true" width="300px" vflex="1" autoscroll="true">
+			<div id="sl" height="100%">
+				<tree id="serverTree" width="100%" vflex="1" height="100%" mold="paging">
+					<treecols>
+						<treecol label="host" />
+					</treecols>
+					<template name="model">
+						<treeitem>
+							<treerow>
+								<treecell label="${each.total}" />
+							</treerow>
+						</treeitem>
+					</template>
+				</tree>
+			</div>
+		</west>
+		<center sclass="nested-center">
+			<tabbox id="tabbox" height="100%" >
+				<tabs></tabs>
+				<tabpanels></tabpanels>
+			</tabbox>
+		</center>
+		<east>
+			<timer id="timer" delay="1000" repeats="true" onTimer="mainForm.getCenter()"/>
+		</east>
+	</borderlayout>
+				
+	
+</zk>

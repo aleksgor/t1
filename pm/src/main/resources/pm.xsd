@@ -1,0 +1,86 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ag.com"
+	targetNamespace="http://www.ag.com">
+	<xs:element name="models" type="models" />
+	<xs:complexType name="models">
+		<xs:sequence>
+			<xs:element type="model" name="model" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="field">
+		<xs:sequence>
+			<xs:element type="column" name="column" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" />
+		<xs:attribute name="primary-key" />
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="string" />
+					<xs:enumeration value="byte" />
+					<xs:enumeration value="int" />
+					<xs:enumeration value="short" />
+					<xs:enumeration value="long" />
+					<xs:enumeration value="float" />
+					<xs:enumeration value="double" />
+					<xs:enumeration value="date" />
+					<xs:enumeration value="boolean" />
+					<xs:enumeration value="binary" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="column">
+		<xs:attribute name="name" />
+		<xs:attribute name="sql-type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="STRING" />
+					<xs:enumeration value="DOUBLE" />
+					<xs:enumeration value="DATE" />
+					<xs:enumeration value="INT" />
+					<xs:enumeration value="LONG" />
+					<xs:enumeration value="FLOAT" />
+					<xs:enumeration value="CLOB" />
+					<xs:enumeration value="BLOB" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="model">
+		<xs:sequence>
+			<xs:element type="field" name="field" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element type="relation" name="relation" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" />
+		<xs:attribute name="class" />
+		<xs:attribute name="table" />
+		<xs:attribute name="identifier" />
+	</xs:complexType>
+
+	<xs:complexType name="relation">
+		<xs:sequence>
+			<xs:element type="relationColumn" name="column" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" />
+		<xs:attribute name="relationTo" />
+		<xs:attribute name="field" />
+		<xs:attribute name="method" />
+		<xs:attribute name="join">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="leftOuter" />
+					<xs:enumeration value="inner" />
+					<xs:enumeration value="rightOuter" />
+					<xs:enumeration value="fullOuter" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="relationColumn">
+		<xs:attribute name="name" />
+		<xs:attribute name="relationTo" />
+	</xs:complexType>
+</xs:schema>

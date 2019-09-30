@@ -1,0 +1,199 @@
+<zk>
+	<style src="/widgets/getting_started/layout/style.css" />
+	<borderlayout vflex="min" apply="com.ag.cache.controller.MainController" height="100%">
+		<north sclass="header" height="50px">
+
+			<div id="toolbar" height="20px" width="100%">
+				<label sclass="name-text" value="Host:" />
+				<textbox id="host" width="150px" value="localhost" />
+				<label sclass="name-text" value="Port:" />
+				<intbox id="port" width="100px" value="9245" />
+				<button id="connect" label="Connect" />
+			</div>
+		</north>
+		<west title="By Type" collapsible="true" width="300px" vflex="1">
+			<div id="sl" height="100%">
+				<tree id="serverTree" width="100%" vflex="1" height="100%" mold="paging">
+					<treecols>
+						<treecol label="host" />
+					</treecols>
+					<template name="model">
+						<treeitem>
+							<treerow>
+								<treecell label="${each.total}" />
+							</treerow>
+						</treeitem>
+					</template>
+				</tree>
+			</div>
+		</west>
+		<center>
+			<tabbox id="tabbox" height="100%">
+				<tabs>
+					<tab>1</tab>
+				</tabs>
+				<tabpanels height="100%">
+					<tabpanel height="100px" vflex="1">
+						<borderlayout>
+							<center autoscroll="true" >
+								<panel>
+									<panelchildren>
+										<grid>
+											<columns>
+												<column></column>
+												<column></column>
+												<column></column>
+												<column></column>
+											</columns>
+											<rows>
+												<row valign="top">
+													<panel title="112">
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+													<panel>
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+													<panel>
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+													<panel>
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+												</row>
+												<row>
+													<panel>
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+													<panel>
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+													<panel>
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+													<panel>
+														<panelchildren>
+															<grid>
+																<columns>
+																	<column>1</column>
+																	<column>2</column>
+																</columns>
+																<rows>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																	<row>2 3</row>
+																</rows>
+															</grid>
+														</panelchildren>
+													</panel>
+												</row>
+											</rows>
+										</grid>
+									</panelchildren>
+								</panel>
+							</center>
+						</borderlayout>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</center>
+	</borderlayout>
+</zk>
